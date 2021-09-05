@@ -14,11 +14,11 @@ keys = {
         'product1': ['Name Badge Stickers (Pack of 100)', 'Red', 'acc'],
         'product2': ['Static Sweater', 'Black', 'Tops/Sweaters'],
         'product3': ['Portrait Hooded Sweatshirt', 'Dark Olive', 'Sweatshirts'],
-        'name': 'Bryan Saldana',
-        'email': '214188625@madisonhs.org',
-        'phone': '347 666 7919',
-        'address': '7807 20th Avenue',
-        'zip': '11214',
-        'card': '5211 0500 0400 4353',
-        'cvv': '50'
+        'name': 'John Smith',
+        'email': 'Smith@aol.com',
+        'phone': '123-456-7980',
+        'address': '1233 aoeu Avenue',
+        'zip': '11216',
+        'card': '4111 1111 1111 1111',
+        'cvv': '503'
 }
