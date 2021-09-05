@@ -1,0 +1,47 @@
+body {
+	background-color: purple;
+}
+div {
+	background-color: lightblue;
+	border: 5px solid black;
+	width: 200px;
+	height: 200px;
+	margin-left: 100px;
+	margin-bottom: 50px;
+	border-radius: 25px;
+	text-align: center;
+}
+#Red {
+	background-color: red;
+	margin-top: 35px;
+}
+#Yellow {
+	background-color: yellow;
+}
+#Green {
+	background-color: green;
+}
+a {
+	text-decoration: none;
+}
+#YahooOnly:link {
+	color: white;
+	background: black;
+	border: 1px solid white;
+}
+#YahooOnly:visited {
+	color: white;
+	background: black;
+	border: 1px solid white;
+}
+#YahooOnly:hover {
+	color: black;
+	background-color: white;
+	border: 1px dotted hotpink;
+}
+#YahooOnly:active {
+	color: blue;
+	background: orange;
+	border: 3px dashed brown;
+	font-size: 2.5em; 
+}

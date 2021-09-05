@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Apple Pie</title>
+</head>
+<body>
+	<h1><u><center>How to Make Apple Pie</center></u></h1>
+	<h2>Ingredients</h2>
+		<ul>
+			<h3>Dough:</h3>
+			<li>2 1/2 cups of all-purpose flour</li>
+			<li>4 teaspoons of sugar</li>
+			<li>1/4 teaspoons of fine salt</li>
+			<li>14 tablespoons of cold butter,diced</li>
+			<li>1 large egg, lighly beaten with 2 tablespoons of cold water</li>
+			<h3>Filling:</h3>
+			<li>2 tablespoons freshly squeezed lemon juice</li>
+			<li>3 ponds baking apples</li>
+			<li>2/3 cup sugar, plus more for sprinkling on the pie</li>
+			<li>1/4 cup unsalted butter</li>
+			<li>1/4 teaspoon ground cinnamon</li>
+			<li>Generous pinch or ground nutmeg</li>
+			<li>1 large egg, lightly beaten</li>
+		</ul>
+	<h2>Directions</h2>
+		<ol>
+			<li>Heat oven to 425DF. Prepare double-crust pastery</li>
+			<li>Mix sugar, flour, cinnamon, nutmeg, and salt in large bowl. Stir in apples</li>
+			<li>Roll other round of pastery. Fold into fourths and cut slits so steam can escape.</li>
+			<li>Bake 40 to 50 minutes or until crust is brown and juice begins to bubble through slits in the crust</li>
+		</ol>
+		<img src="ApplePie.jpeg" height="200px" width="300px">
+		<img src="ApplePie2.jpeg" height="200px" width="300px">
+</body>
+</html>

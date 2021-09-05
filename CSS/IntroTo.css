@@ -1,0 +1,22 @@
+body {
+	background-color: yellow;
+	background-image: url("Smiley.png");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: fixed;
+}
+h1 {
+	color: blue;
+}
+p {
+	background-color: purple;
+	color: white;
+}
+h2 {
+	background-color: orange;
+	color: hotpink;
+}
+h3 {
+	background-color: white;
+	color: tomato;
+}

@@ -1,0 +1,29 @@
+body {
+	background: beige;
+}
+p {
+	text-align: center;
+	text-decoration: underline;
+	color: purple;
+	font-style: italic;
+	font-size: 25px;
+}
+table, th, td {
+	border: 0px solid black;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+th {
+	text-align: left;
+	color: white;
+	background: #4CAF50;
+}
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+tr:nth-child(even){
+	background: yellow;
+}
