@@ -1,0 +1,573 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{askmaps}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{tikz-timing}
+\usepackage[letterpaper, margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1.0}
+\title{Lab 2 \\ Combinational SSI Circuits}
+\author{Qadis Chaudhry}
+\date{March 12, 2021}
+\newcommand{\twoobjects}[2]{%
+  \leavevmode\vbox{\hbox{#1}\nointerlineskip\hbox{#2}}%
+}
+\begin{document}
+\maketitle
+    \section*{Experiment 1}
+    \begin{itemize}
+        \item[\textit{i)}]
+    \end{itemize}
+    \[
+        F\left(A,B,C,D\right) = \Sigma_{A,B,C,D}\left(1,3,5,6,7,14\right)
+    \]
+    \begin{center}
+        \begin{tabular}{ccccc|c}
+            Minterm & A & B & C & D & F \\
+            \cmidrule{2-6}
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 1 & 1 \\
+            2 & 0 & 0 & 1 & 0 & 0 \\
+            3 & 0 & 0 & 1 & 1 & 1 \\
+            4 & 0 & 1 & 0 & 0 & 0 \\
+            5 & 0 & 1 & 0 & 1 & 1 \\
+            6 & 0 & 1 & 1 & 0 & 1 \\
+            7 & 0 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+        \quad
+        \begin{tabular}{ccccc|c}
+            & A & B & C & D & F \\
+            \cmidrule{2-6}
+            8 & 1 & 0 & 0 & 0 & 0 \\
+            9 & 1 & 0 & 0 & 1 & 0 \\
+            10 & 1 & 0 & 1 & 0 & 0 \\
+            11 & 1 & 0 & 1 & 1 & 0 \\
+            12 & 1 & 1 & 0 & 0 & 0 \\
+            13 & 1 & 1 & 0 & 1 & 0 \\
+            14 & 1 & 1 & 1 & 0 & 1 \\
+            15 & 1 & 1 & 1 & 1 & 0 \\
+        \end{tabular}
+    \end{center}
+    \par This truth table represents the function shown above and it can be seen
+    that the function is defined as an expression of Minterms instead of a
+    Boolean expression. Minterms by definition are terms for which the output of
+    the function equals 1. Using this knowledge, the truth table can be filled
+    out according to the positions of the Minterms on the table. Since they
+    equal to 1, the table values for 1, 3, 5, 6, 7, and 14, are set to equal 1,
+    while all the other terms are set to 0. The result of this, is the table
+    shown above. From this information, a Karnaugh Map can also be constructed
+    to described the function.
+    \begin{center}
+        \askmapiv{}{CDAB}{F}{0000110001011100}{}
+    \end{center}
+    \par The K-Map shown above is the representation of the function that was
+    giving at the beginning of the experiment. The main purpose of a Karnaugh
+    Map is for the simplification of Boolean expressions and this is done by
+    combining adjacent 1s that appear in the map. The map itself is constructed
+    using the list of Minterms. In a given case where the Minterms are not
+    explicitly defined, contrary to this case, the Minterms can be extracted
+    from the truth table of the function using the indexing that is shown above
+    in the table. These Minterms are placed in specific cells of the map which
+    are defined as, reading left to right and top to bottom, $0, 1, 3, 2, 4, 5,
+    7, 6, 12, 13, 15, 14, 8, 9, 11, 10$. With this information, we can place 1s
+    where they need to be placed, the cell which corresponds to the Minterm. For
+    this particular function, the cells $1, 3, 5, 6, 7$, and $14$ will be filled
+    in with 1s and the rest of the cells will be filled with 0s. Doing this will
+    yield the map above.
+    \par The main purpose of a Karnaugh Map as stated before, is for the
+    simplification of Boolean expressions. This can be done by grouping together
+    adjacent 1s that are in couples equal to a power of two. This means we can
+    create groups that are either two 1s, four 1s, eight 1s, and so on,
+    otherwise, a group cannot be created. These groups are called prime
+    implicants.  Another aspect that must be adhered to is the creation of as
+    least groups as possible, since this will result in the simplest form of the
+    function. In this map, it can be seen that there is a group of 1s occupying
+    cells $1, 3, 5$, and $7$.  These can be grouped and should be grouped, since
+    they are the largest power of two number of 1s that are adjacent in the
+    Karnaugh Map. Now looking to see what is left, the only 1s that are not
+    covered now are the ones in cells $6$ and $14$. These two can be grouped
+    together and the resulting map is formed.
+    \begin{center}
+        \askmapiv{}{CDAB}{F}{0000110001011100}{%
+            \put(2.0,3.0){\oval(1.8,1.8)}%
+            \put(3.5,2.0){\oval(0.8,1.8)}
+        }
+    \end{center}
+    \par With the use of this map, the function can now be simplified by
+    logically defining the essential prime implicants that are formed. Usually,
+    when forming the groups in a Karnaugh Map, all adjacent 1s are grouped
+    together according to powers of two, in this case however, it can be seen
+    that there is a pair of adjacent 1s in the cells $6$ and $7$ that are not
+    grouped. The reason for this lies in the goal of creating the simplest
+    function that can be made, meaning, the least amount of groups are formed.
+    The implications of this will be explored in the next section of this
+    experiment however, for now, the simplified function is attained.
+    \par In order to determine this simplified expression, we must assign logic
+    values based on the variables to the groups created in the map. For the
+    group of four, it can be examined that the bit values of one of the
+    variables is static while the other is not. For this group, the bit values
+    corresponding to the variables $A$ and $B$ change from $00$ and $01$
+    respectively. The value of $A$ remains constant while the value of $B$
+    changes from $0$ to $1$. Since the value of $B$ is changing while the output
+    of the function is $1$, it can be intuitively reasoned that the output of
+    the function corresponding to that Minterm, does not depend on the variable
+    $B$ but does depend on $A$. The same can be done for the variables $C$ and
+    $D$ and it can be seen that for these variables, the bit values change from
+    $01$ to $11$ where, $D$ is the one that is static while $C$ is changing.
+    With the same reasoning, the output can be said to be dependent on the value
+    of $D$, and independent of the variable $C$. Writing this as a complete
+    Boolean statement, since $A$ is static and has a value of $0$, and $D$ is
+    static and has a value of $1$, it can be said that the value of the output
+    is dependent on the inverse of the variable $A$, and the input value of the
+    variable $D$. This can be written as a logic function, NOT $A$ AND $D$, or
+    $A'D$. This covers the group of four in the Karnaugh Map and therefore the
+    four Minterms in the function that corresponded to those cells, now we can
+    move on to the other group.
+    \par The only other group in the map is the group of two 1s in cells, $6$
+    and $14$. Using the same approach to find an expression for this group, we
+    can see that the bit values $C$ and $D$ remain static since the implicant
+    resides only in one column, but the values for $A$ and $B$ are changing. For
+    this reason, the output depends both on $C$ and $D$ fundamentally since the
+    values for both do not change. For the variables $A$ and $B$ however, the
+    bits go from $01$ to $11$. The value of $A$ here is not static as it changes
+    from $0$ to $1$ while the value of $B$ stays at $1$. This suggests, as
+    before, that the output of the function for these cells depends on the value
+    of $B$ and not on the value of $A$. Altogether, this group can be described
+    as, $B$ AND $C$ AND NOT $D$, or simply $BCD'$. With both of these prime
+    implicants now defined, the expression of the function can be written.
+    \begin{equation}
+        F\left(A,B,C,D \right) = A'D + BCD'
+    \end{equation}
+    \par Since all Boolean functions can be represented as a Sum of Products,
+    and we have the products that define the two groups created in the Karnaugh
+    Map, simply adding these products together, taking them as the input of an
+    OR gate, will grant an expression for the function. This will be the Minimal
+    Sum of Products expression since it has been made the simplest with the use
+    of the Karnaugh Map.
+    \begin{itemize}
+        \item[\textit{ii)}]
+    \end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\linewidth]{Hazardous Circuit Implementation
+        (Experiment 1).png}
+        \caption{Circuit Implementation, Eq. 1}%
+        \label{fig:1}
+    \end{figure}
+    \par This circuit is an accurate realization of the function defined above,
+    two AND gates representing the two prime implicants, and their outputs being
+    taken as the input of an OR gate to yield the expression. However, the
+    circuit consists of timing hazard notably, static-1 hazard. In real world
+    circuits, the gates which make up the circuit are not ideal, they possess
+    intrinsic delays due to a multitude of factors. This causes glitches in the
+    output of the function as these delays cause there to be differences in
+    timing of the output of each gate. These delays are known as propagation
+    delays since they propagate to the final output of the function and cause
+    glitches. The glitches are categorized as three different types, static-1
+    hazard, static-0 hazard, and dynamic hazard. Static-1 hazard is classified
+    by the behavior of the function dipping down to a value of zero when the
+    value should be static, at 1. The observed change in the output should be
+    nonexistent.  Similarly, static-0 hazard occurs when there is a change in
+    the output from the value of zero. Since no change should exist at all but
+    the function changes to 1 for a brief moment, the circuit possesses static-0
+    hazard.  Dynamic hazard is simply consistent of multiple static-1 and
+    static-0 hazards and is classified by multiple glitches in the output. In
+    this particular case, there exists a static-1 hazard and it can be shown
+    with the use of a timing diagram.
+    \begin{center}
+        \begin{tikztimingtable}
+            A & 25L \\
+            B & 25H \\
+            C & 25H \\
+            D & 7H 18L \\
+            AP & 25H \\
+            DP & 9L 16H \\
+            DAP & 9H 16L \\
+            BCDP & 11L 14H \\
+            F & 9H 2L 14H \\
+            \begin{extracode}
+                \begin{background}
+                    \draw[->, >=latex] (0, -\nrows-8) -- (\twidth+1, -\nrows-8);
+                    \foreach\n in {0,1,...,\twidth}
+                        \draw(\n,-\nrows-8+.2) -- + (0,-.4)
+                            node [below,inner sep=2pt] {\scalebox{1}{\tiny\n}};
+                \end{background}
+            \end{extracode}
+        \end{tikztimingtable}
+    \end{center}
+    \par The scale of this timing diagram is from 0 to 25 where each step is
+    divided to equal $5ns$. It shows that the delay between the gates is $10ns$,
+    and depicts these delays as they occur with every gate as well as how they
+    propagate to the output in the end as well. It can be seen that the output
+    of function consists a glitch where the value of $F$ changes from 1 to 0 for
+    a brief moment before returning to 1. This is described as a static-1 hazard
+    since the output should have remained at 1 however, fluctuated down to 0. In
+    the problem it states that the clock timing is $100\mu s$, however, for this
+    diagram, the scale has been chosen so that only one change is in the input
+    of $D$ is shown. This was done so that the change in the output could be
+    shown clearly as the duration of the glitch is a mere $10ns$.
+    \begin{itemize}
+        \item[\textit{iii)}]
+    \end{itemize}
+    \par One method of detecting and fixing these glitches is to add buffer
+    gates to the circuit. This has the effect of equalizing the propagation
+    delays between all the gates and the output will exhibit an accurate reading
+    based on its inputs. The issue with this, however, is that we are adding
+    more and more gates to the circuit, effectively slowing it down which is not
+    an ideal solution. The main method that is utilized for the purpose of
+    eliminating hazards, is with the use of a Karnaugh Map. This time, instead
+    of using it to find the simplest function, we will use it to eliminate
+    hazard.
+    \par To eliminate hazard with a Karnaugh Map, we must look for adjacent 1s
+    that are not coupled together in the case of static-1 hazard. Since the
+    simplest function looks to create the smallest number of groups, it neglects
+    these pairs of redundant 1s, which in turn leads to a simpler function
+    however, one that is prone to error. We can look at the Karnaugh Map created
+    previously and modify it to get rid of the hazard.
+    \begin{center}
+        \askmapiv{}{CDAB}{F}{0000110001011100}{%
+            \put(2.0,3.0){\oval(1.8,1.8)}%
+            \put(3.5,2.0){\oval(0.8,1.8)}
+        }
+    \end{center}
+    \par This map covers all the 1s in the least number of groups and therefore
+    creates the simplest function. For the use of eliminating hazard, we must
+    look to the pair of adjacent 1s that are not covered by a group in cells $6$
+    and $7$. Since the mitigation of error requires the addition of redundancy,
+    the implicant of these two ones must be added into the function. The new
+    Karnaugh Map will take the form:
+    \begin{center}
+        \askmapiv{}{CDAB}{F}{0000110001011100}{%
+            \put(2.0,3.0){\oval(1.8,1.8)}%
+            \put(3.0,2.5){\oval(1.8,0.8)}%
+            \put(3.5,2.0){\oval(0.8,1.8)}
+        }
+    \end{center}
+    \par Defining this implicant, we have to once again look at the variables
+    that are changing and the variables that are staying constant. For $A$ and
+    $B$, we observe no change since the implicant resides in a single row
+    therefore there are no changes in the bit values that define $A$ and $B$.
+    For $C$ and $D$ however, the bit values do change; from, $11$ to $10$.  Once
+    again, here it can be observed that $C$ remains constant while the bit value
+    of $D$ changes between $1$ and $0$. This means that the output of that group
+    is dependent on the value of $C$, and $A$ and $B$, while independent of $D$.
+    Writing this as a logical expression, this implicant in dependent on,
+    $A'BC$. Adding this on to the function of the output, a new function can be
+    defined as:
+    \begin{equation}
+        G\left(A,B,C,D \right) = A'D + BCD' + A'BC
+    \end{equation}
+    \\
+    \begin{itemize}
+        \item[\textit{iv)}]
+    \end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\linewidth]{Fixed Circuit Implementation
+        (Experiment 1).png}
+        \caption{Circuit Implementation, Eq. 2}%
+        \label{fig:2}
+    \end{figure}
+    \par This updated circuit is of the function depicted in equation 2 and it
+    can be seen that it only differs slightly from the original circuit. The
+    only difference is that this circuit consists of one extra gate, $BCAP:
+    BCA'$. This intentional redundancy allows for the function to operate hazard
+    free and this can be shown with the use of a timing diagram. This is the
+    same as before, however, now we can observe that there is no glitch present
+    in the output of the function.
+    \begin{center}
+        \begin{tikztimingtable}
+            A & 25L \\
+            B & 25H \\
+            C & 25H \\
+            D & 7H 18L \\
+            AP & 25H \\
+            DP & 9L 16H \\
+            DAP & 9H 16L \\
+            BCDP & 11L 14H \\
+            BCAP & 25H \\
+            G & 25H \\
+            \begin{extracode}
+                \begin{background}
+                    \draw[->, >=latex] (0, -\nrows-9) -- (\twidth+1, -\nrows-9);
+                    \foreach\n in {0,1,...,\twidth}
+                        \draw(\n,-\nrows-9+.2) -- + (0,-.4)
+                            node [below,inner sep=2pt] {\scalebox{1}{\tiny\n}};
+                \end{background}
+            \end{extracode}
+        \end{tikztimingtable}
+    \end{center}
+    \par It can be seen that the output of the function is constant with a value
+    of $1$. This is the expected result as the output for both bit values $0111$
+    and $0110$ are 1, referring back to the truth table created for the
+    function. The scale once again is from 0 to 25 where all each division
+    represents a value of $5ns$. The previous behavior was not concurrent with
+    the expected behavior as the function assumed a value of 0 for $10ns$.  This
+    was the glitch present in the preliminary implementation of the function and
+    it is clear that it has been mitigated with the creation of the new
+    function. The way this is accomplished is quite simple, since the function
+    is a Sum of Products, the output is the result of an OR gate. In this case,
+    it entails that the function value is orchestrated by the value of the gate
+    $BCA'$, and since in this case the value of that gate is always 1 for this
+    transition, as is the output of the function. This method of mitigation is
+    not only useful for this case but any case of the function's input
+    information changing. The reason for this is, looking back to the Karnaugh
+    Map, there are no adjacent 1s present without a grouping. All possible
+    changes to the input bit values are covered by an individual gate, and since
+    these gates are all the eventual input of an OR gate, the function is
+    covered for all possible changes to the values of its inputs.
+    \section*{Experiment 2}
+    \begin{itemize}
+        \item[\textit{i)}]
+    \end{itemize}
+    \begin{center}
+        \twoobjects
+            {\includegraphics[width=0.7\linewidth]{Experiment 2 (A=0) 2021-02-26
+            at 2.16.27 PM.png}}
+            {\includegraphics[width=0.7\linewidth]{Experiment 2 (A=1) 2021-02-26
+            at 2.15.54 PM.png}}
+    \end{center}
+    \par To realize the circuit for equation 2, the Emona system is used. Here,
+    we are able to create a circuit that develops the output of the function
+    using real world gates and is able to depict what type of behavior is
+    expected from the function. For this implementation, we require one AND gate
+    with two inputs, two AND gates with three inputs, two inverters, and one OR
+    gate. The inverters will be used for the inversion of the inputs $A$ and
+    $D$, the two input AND gate will take the input of $D$ and the inverted
+    input of $A$, and the two three input AND gates will both take the input of
+    $BC$ and one will take the input of $A'$ while the other, $D'$. The OR gate
+    will be placed at the end, with its input being the outputs of the three AND
+    gates. The resulting output will be function $G\left(A,B,C,D\right)$.
+    \par One thing that we must take into account when developing the waveforms
+    for this function is that it is a function of four variables. Since Emona
+    only possesses four monitoring channels, one of the inputs will have to be
+    controlled since it cannot be monitored. In the Emona implementation, we can
+    see that the value of one of the variables is controlled using a manual
+    switch. This means that the value of that variable is set as either 1 or 0
+    while the other three variables can be set on a clock and monitored with the
+    use of one of the channels. The output then is able to be monitored by the
+    last channel. This is the reason there are two images for the circuit.  The
+    variable $A$ was chosen to be controlled by the switch in this experiment,
+    while $B$, $C$, and $D$ were monitored with ChA, ChB, and ChC respectively.
+    The output was set to be monitored by ChD. In the first image, the value of
+    $A$ is set to be 0 and in the second image $A$ equals 1. The truth table can
+    be used to verify that the values of the two functions, equation 1 and
+    equation 2, are the same, the only difference being, one is hazardous while
+    the other is hazard free.
+    \[
+        G\left(A,B,C,D \right) = A'D + BCD' + A'BC
+    \]
+    \begin{center}
+        \begin{tabular}{ccccc|c}
+            Minterm & A & B & C & D & G \\
+            \cmidrule{2-6}
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 1 & 1 \\
+            2 & 0 & 0 & 1 & 0 & 0 \\
+            3 & 0 & 0 & 1 & 1 & 1 \\
+            4 & 0 & 1 & 0 & 0 & 0 \\
+            5 & 0 & 1 & 0 & 1 & 1 \\
+            6 & 0 & 1 & 1 & 0 & 1 \\
+            7 & 0 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+        \quad
+        \begin{tabular}{ccccc|c}
+            & A & B & C & D & G \\
+            \cmidrule{2-6}
+            8 & 1 & 0 & 0 & 0 & 0 \\
+            9 & 1 & 0 & 0 & 1 & 0 \\
+            10 & 1 & 0 & 1 & 0 & 0 \\
+            11 & 1 & 0 & 1 & 1 & 0 \\
+            12 & 1 & 1 & 0 & 0 & 0 \\
+            13 & 1 & 1 & 0 & 1 & 0 \\
+            14 & 1 & 1 & 1 & 0 & 1 \\
+            15 & 1 & 1 & 1 & 1 & 0 \\
+        \end{tabular}
+    \end{center}
+    \par It can be seen here that the truth table for this function and the one
+    created at the beginning of experiment 1 are the same. This signifies, that
+    the two functions are indeed equivalent. In this particular case, since the
+    table is formatted so that $A=0$ on the left and $A=1$ on the right, the
+    table on the left corresponds to the first image of the circuit and its
+    waveform while the table to the right represents the second image as well as
+    its waveform. Although the table was split like this to avoid creating one
+    large vertical table, in this case, it serves functional importance as it
+    depicts the Minterms that correspond to each of the values of $A$ according
+    to the switch.
+    \section*{Experiment 3}
+    \begin{itemize}
+        \item[\textit{i)}]
+    \end{itemize}
+    \begin{center}
+        \twoobjects
+            {\includegraphics[width=0.85\linewidth]{Experiment 3 Original (A=0)
+            2021-02-26 at 2.55.58 PM.png}}
+            {\includegraphics[width=0.85\linewidth]{Experiment 3 Original (A=1)
+            2021-02-26 at 2.56.07 PM.png}}
+    \end{center}
+    \par For this circuit, the implementation can be simplified greatly and that
+    is evident from looking at the function's Boolean expression as well as its
+    truth table.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.65\linewidth]{Original Circuit Schematic
+        (Experiment 3).png}
+        \caption{Circuit Implementation of $H$}%
+    \end{figure}
+    \par Using this diagram for the circuit, we can write an expression that
+    describes the output. This expression can then be simplified using the
+    axioms and theorems of Boolean Algebra. Working from the top, it can be seen
+    that the input $D$ is being used as the input of an OR gate. The other input
+    of this OR gate is the output of the NAND gate which requires the variables
+    $A$ and $B$. Looking at $A$, the variable is being inverted and then taken
+    as the input of a NAND gate. The other input to this NAND gate is the
+    unaltered value of $B$. The expression for this NAND gate will be simply,
+    $(A'B)'$, since the function of the NAND gate is equivalent to the inverted
+    output of an AND gate. The output of this gate is then taken as the input of
+    the OR gate with the variable $D$. This results in the output of the OR gate
+    being $(A'B)'+D$. This is one of the inputs to the final NAND gate that
+    gives the result of the function, the other comes from the NOR gate seen at
+    the bottom. This NOR gate takes in the values of $B$ and $C$. Since the
+    function of a NOR gate is equal to that of an OR gate with an inverter at
+    its output, the output of this gate will be $(B+C)'$.  Since the output of
+    the function is given as the NAND of these two outputs, we can AND the
+    output of the OR gate with the output of the NOR gate and, invert the output
+    of that, to attain the equation for the function $H$.
+    \begin{equation}
+        H\left(A,B,C,D\right) = ((B+C)'((A'B)'+D))'
+    \end{equation}
+    \par The Emona circuits shown above are the implementation of this function,
+    shown in equation 3.  Once again, there are four inputs to this function,
+    requiring one of the variables of the function to be manually controlled by
+    a switch. The others are clocked and monitored as is the output. This will
+    later be compared to the simplified function to gauge whether or not the
+    simplification is correct.
+    \par One method of simplification of a Boolean function is through the use
+    of a Karnaugh Map, which was used to create the function shown in equation
+    1. This time however, since we have the function from the circuit diagram,
+    we can employ the laws of Boolean Algebra in order to create a simpler
+    expression.
+    \newpage
+    \textit{Steps of Simplification.}
+    \begin{align*}
+        ((B+C)'((A'B)'+D))' & = ((B+C)')'+((A'B)'+D)' & (1) \\
+                            & = (B+C)+((A'B)'+D)'     & (2) \\
+                            & = (B+C)+((A'B)')'(D)'   & (3) \\
+                            & = (B+C)+(A'B)D'         & (4) \\
+                            & = B+C+A'BD'             & (5) \\
+                            & = B+BA'D'+C             & (6) \\
+                            & = B(1+A'D')+C           & (7) \\
+                            & = B(1)+C                & (8) \\
+        ((B+C)'((A'B)'+D))' & = B+C                   & (9)
+    \end{align*}
+    \par These steps are shown for the conversion of the original expression
+    into its simplest form using Boolean Algebra. The process involves the use
+    of the different theorems which are used to write equivalent expressions.
+    For the first step, we apply the DeMorgan's Law which inverts both of the
+    terms of the expression and switches the operation acting between them. From
+    this we get the resulting function in line 2, and it can be seen that $B+C$
+    is inversed twice. By the Double Negation Law, this simply equates to $B+C$.
+    From here, we can apply the DeMorgan's Law once again to the second term,
+    getting us from line 2 to 3. The Double Negation Law is present once again
+    with the term $A'B$, giving us back that term, unaltered. The general
+    function is written in line 5 with nothing more that can be done using the
+    DeMorgan's Law however, the function can be simplified further. Rearranging
+    the terms to get the form in line 6, we are able to use the Distributive
+    Property to rewrite the two terms on the left. The $B$ can be factored out
+    in a sense and line 7 in attained. With this, and the simple fact that
+    anything ORed with 1 will simply yield 1, we can write the function as line
+    8. Another axiom that can be employed now is that anything ANDed with 1 will
+    depend only on the variable, $B(1)=B$. This gets us to the completely
+    simplified expression written in line 9. This can be implemented with the
+    use of only one gate and two variables:
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.85\linewidth]{Simplified Circuit Schematic
+        (Experiment 3).png}
+        \caption{Simplified Circuit Implementation of $H$}%
+    \end{figure}
+    \par This can also be implemented using the Emona Board and the inputs and
+    outputs can be monitored. The wave forms for this circuit can then be
+    compared to that of the original circuit and equality can be verified.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.85\linewidth]{Experiment 3 Simplified
+        2021-02-26 at 2.28.16 PM.png}
+        \caption{Simplified Emona Implementation}%
+    \end{figure}
+    \par From this, we can see that the inputs are monitored with channel ChA
+    and ChB and the output with ChC. The waveform created by ChC can now be
+    compared to the output seen by ChD in the original implementation of the
+    function. Doing this, we can see that the waveforms are identical and
+    therefore, the circuits have to be as well. Furthermore, to truly ensure the
+    equality of these two circuits, the truth tables for each of the functions
+    can be compared.
+    \[
+        H\left(A,B,C,D\right) = ((B+C)'((A'B)'+D))'
+    \]
+    \begin{center}
+        \begin{tabular}{ccccc|c}
+            Minterm & A & B & C & D & H \\
+            \cmidrule{2-6}
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 1 & 0 \\
+            2 & 0 & 0 & 1 & 0 & 1 \\
+            3 & 0 & 0 & 1 & 1 & 1 \\
+            4 & 0 & 1 & 0 & 0 & 1 \\
+            5 & 0 & 1 & 0 & 1 & 1 \\
+            6 & 0 & 1 & 1 & 0 & 1 \\
+            7 & 0 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+        \quad
+        \begin{tabular}{ccccc|c}
+            & A & B & C & D & H \\
+            \cmidrule{2-6}
+            8 & 1 & 0 & 0 & 0 & 0 \\
+            9 & 1 & 0 & 0 & 1 & 0 \\
+            10 & 1 & 0 & 1 & 0 & 1 \\
+            11 & 1 & 0 & 1 & 1 & 1 \\
+            12 & 1 & 1 & 0 & 0 & 1 \\
+            13 & 1 & 1 & 0 & 1 & 1 \\
+            14 & 1 & 1 & 1 & 0 & 1 \\
+            15 & 1 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+    \end{center}
+    \[
+        H_s\left(A,B,C,D\right) = B+C
+    \]
+    \begin{center}
+        \begin{tabular}{ccccc|c}
+            Minterm & A & B & C & D & $H_s$ \\
+            \cmidrule{2-6}
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            1 & 0 & 0 & 0 & 1 & 0 \\
+            2 & 0 & 0 & 1 & 0 & 1 \\
+            3 & 0 & 0 & 1 & 1 & 1 \\
+            4 & 0 & 1 & 0 & 0 & 1 \\
+            5 & 0 & 1 & 0 & 1 & 1 \\
+            6 & 0 & 1 & 1 & 0 & 1 \\
+            7 & 0 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+        \quad
+        \begin{tabular}{ccccc|c}
+            & A & B & C & D & $H_s$ \\
+            \cmidrule{2-6}
+            8 & 1 & 0 & 0 & 0 & 0 \\
+            9 & 1 & 0 & 0 & 1 & 0 \\
+            10 & 1 & 0 & 1 & 0 & 1 \\
+            11 & 1 & 0 & 1 & 1 & 1 \\
+            12 & 1 & 1 & 0 & 0 & 1 \\
+            13 & 1 & 1 & 0 & 1 & 1 \\
+            14 & 1 & 1 & 1 & 0 & 1 \\
+            15 & 1 & 1 & 1 & 1 & 1 \\
+        \end{tabular}
+    \end{center}
+    \par With these two tables, it is clear that these two functions are
+    equivalent. The truth tables are the same as well as the waveforms,
+    signifying that the two functions provide the same functionality. The
+    ability to do this simplification is required greatly since the less gates
+    and the less inputs the gates are required to handle, the less power will be
+    used and therefore the circuit and the chips in which these are implemented
+    will function much more effectively and efficiently.
+\end{document}
