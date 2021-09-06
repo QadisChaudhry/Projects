@@ -1,13 +1,13 @@
 profile = {
-  "name": "Bryan Saldana",
-  "email": "Habsaldana833@gmail.com",
-  "phone": "347-666-7919",
-  "address": "AB986 7807 20th Avenue",
-  "zip": "11214",
-  "card": "6011 0012 3854 7618",
-  "month": "11",
-  "year": "2025",
-  "cvv": "375"
+  "name": "John Smith",
+  "email": "Smith@gmail.com",
+  "phone": "123-123-1234",
+  "address": "1234 aeuo St",
+  "zip": "11222",
+  "card": "4111 1111 1111 1111",
+  "month": "03",
+  "year": "2024",
+  "cvv": "211"
 };
 
 document.getElementById("order_billing_name").value = profile["name"];
