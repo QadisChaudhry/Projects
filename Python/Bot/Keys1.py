@@ -14,11 +14,11 @@ keys = {
         'product1': ['Camo', 'shirt'],
         'product2': ['Oxford', 'shirt'],
         'product3': ['Leopard', 'bag'],
-        'name': 'Bryan Saldana',
-        'email': '214188625@madisonhs.org',
-        'phone': '3476667919',
-        'address': '7807 20th Avenue',
-        'zip': '11214',
-        'card': '5211 0500 0400 4353',
-        'cvv': '507'
+        'name': 'John Smith',
+        'email': 'Smith@aol.com',
+        'phone': '123-456-7980',
+        'address': '1233 aoeu Avenue',
+        'zip': '11216',
+        'card': '4111 1111 1111 1111',
+        'cvv': '503'
 }
