@@ -5,14 +5,14 @@ keys = {
         'size1': '',
         'size2': '',
         'size3': '',
-        'email': '214188625@madisonhs.org',
-        'firstName': 'Bryan',
-        'lastName': 'Saldana',
-        'address': '7807 20th Avenue',
+        'email': 'Smith@aol.com',
+        'firstName': 'John',
+        'lastName': 'Smith',
+        'address': '123 aoeu Avenue',
         'city': 'Brooklyn',
-        'phone': '3476667919',
-        'zip': '11214',
-        'card': '5211050004004353',
-        'expDate': '02/23',
-        'cvv': '507'
+        'phone': '4232349899900',
+        'zip': '11223',
+        'card': '4111111111111111',
+        'expDate': '03/25',
+        'cvv': '503'
 }
