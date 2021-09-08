@@ -1,6 +1,6 @@
 # Projects
 
-All of the projects that have seen work over the years from full programs to introductory work.
+Projects that have seen work over the years, ranging from introductory work to functional programs.
 
 Notes:
   - open-supreme was used as inspiration and a guide to working with HTTPS requests within Python.
