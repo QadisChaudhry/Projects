@@ -5,13 +5,13 @@ keys = {
         'product1': ['Supreme®/Yohji Yamamoto® Sweater', 'Black', 'Tops/Sweaters'],
         'product2': ['Supreme®/Yohji Yamamoto® Logo Tee', 'Black', 'Shirts'],
         'product3': ['Name Badge Stickers', 'Red', 'Accessories'],
-        'name': 'Bryan Saldana',
-        'email': 'Habsaldana833@gmail.com',
-        'phone': '347-666-7919',
-        'address': '7807 20th Avenue',
-        'zip': '11214',
-        'card': '5211 0500 0400 4353',
-        'month': '02',
-        'year': '2023',
-        'cvv': '507'
+        'name': 'John Smith',
+        'email': 'Smith@gmail.com',
+        'phone': '125-156-1457',
+        'address': '123 aoeu Avenue',
+        'zip': '11235',
+        'card': '4111 1111 1111 1111',
+        'month': '05',
+        'year': '2026',
+        'cvv': '514'
 }
